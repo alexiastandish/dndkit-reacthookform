@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MenuItemComponent from './MenuItemComponent'
 import styles from '../styles.module.scss'
 import {
