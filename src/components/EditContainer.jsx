@@ -25,6 +25,7 @@ export default function EditContainer({
     button,
     setClose,
     closeOnClick,
+    buttonIdentifier,
 }) {
     const [anchorEl, setAnchorEl] = useState(null)
 
@@ -48,7 +49,7 @@ export default function EditContainer({
     const id = open ? 'simple-popper' : undefined
 
     useClickOutside(ref, (e) => {
-        if (e.target.id === 'popper-button') {
+        if (e.target.id === `popper-button-${buttonIdentifier}`) {
             return
         }
         return setAnchorEl(null)
@@ -58,7 +59,7 @@ export default function EditContainer({
         <div>
             <button
                 aria-describedby={id}
-                id="popper-button"
+                id={`popper-button-${buttonIdentifier}`}
                 type="button"
                 onClick={handleClick}
             >

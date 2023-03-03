@@ -12,6 +12,7 @@ export default function MenuItemComponent({
     index,
     setValue,
     watch,
+    remove,
 }) {
     // setNodeRef: how it's going to track the element
     // attributes: defining different attributes for your element
@@ -28,72 +29,87 @@ export default function MenuItemComponent({
 
     return (
         <div ref={setNodeRef} className={styles.user} style={style}>
-            <button {...listeners} {...attributes} type="button">
-                <i className="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-            <EditContainer
-                closeOnClick={close}
-                setClose={setClose}
-                button={<i className={`fa ${icon}`}></i>}
-            >
-                <Box
-                    sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}
-                    style={{ height: 100, width: 200, overflow: 'scroll' }}
+            <div className={styles.userContent}>
+                <button {...listeners} {...attributes} type="button">
+                    <i className="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <EditContainer
+                    buttonIdentifier={`icon-${index}`}
+                    closeOnClick={close}
+                    setClose={setClose}
+                    button={<i className={`fa ${icon}`}></i>}
                 >
-                    {constants.icons.map((icon) => {
-                        return (
-                            <i
-                                style={{ margin: 5 }}
-                                className={`fa ${icon}`}
-                                key={icon}
-                                onClick={(e) => {
+                    <Box
+                        sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}
+                        style={{ height: 100, width: 200, overflow: 'scroll' }}
+                    >
+                        {constants.icons.map((icon) => {
+                            return (
+                                <i
+                                    style={{ margin: 5 }}
+                                    className={`fa ${icon}`}
+                                    key={icon}
+                                    onClick={(e) => {
+                                        setValue(
+                                            `menuItems.${index}.icon`,
+                                            e.target.className.split(' ')[1],
+                                            {
+                                                shouldValidte: true,
+                                                shouldDirty: true,
+                                                shouldTouch: true,
+                                            }
+                                        )
+                                        return setClose(true)
+                                    }}
+                                ></i>
+                            )
+                        })}
+                    </Box>
+                </EditContainer>
+
+                <input
+                    {...register(`menuItems.${index}.title`, {
+                        onChange: (e) => {
+                            setValue(
+                                `menuItems.${index}.title`,
+                                e.target.value,
+                                {
+                                    shouldValidte: true,
+                                    shouldDirty: true,
+                                    shouldTouch: true,
+                                }
+                            )
+                        },
+                    })}
+                />
+                <EditContainer button="link" buttonIdentifier={`link-${index}`}>
+                    <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+                        <input
+                            {...register(`menuItems.${index}.url`, {
+                                onChange: (e) => {
                                     setValue(
-                                        `menuItems.${index}.icon`,
-                                        e.target.className.split(' ')[1],
+                                        `menuItems.${index}.url`,
+                                        e.target.value,
                                         {
                                             shouldValidte: true,
                                             shouldDirty: true,
                                             shouldTouch: true,
                                         }
                                     )
-                                    return setClose(true)
-                                }}
-                            ></i>
-                        )
-                    })}
-                </Box>
-            </EditContainer>
+                                },
+                            })}
+                        />
+                    </Box>
+                </EditContainer>
+            </div>
 
-            <input
-                {...register(`menuItems.${index}.title`, {
-                    onChange: (e) => {
-                        setValue(`menuItems.${index}.title`, e.target.value, {
-                            shouldValidte: true,
-                            shouldDirty: true,
-                            shouldTouch: true,
-                        })
-                    },
-                })}
-            />
-            <EditContainer button="link">
-                <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
-                    <input
-                        {...register(`menuItems.${index}.url`, {
-                            onChange: (e) => {
-                                setValue(
-                                    `menuItems.${index}.url`,
-                                    e.target.value,
-                                    {
-                                        shouldValidte: true,
-                                        shouldDirty: true,
-                                        shouldTouch: true,
-                                    }
-                                )
-                            },
-                        })}
-                    />
-                </Box>
-            </EditContainer>
+            <button
+                type="button"
+                onClick={() => remove(index)}
+                className={styles.removeBtn}
+            >
+                <i className="fa-solid fa-trash"></i>
+            </button>
         </div>
     )
 }
