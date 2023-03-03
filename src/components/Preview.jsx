@@ -4,7 +4,7 @@ import styles from '../styles.module.scss'
 
 export default function Preview(props) {
     const formContext = useFormContext()
-    console.log('formContext', formContext)
+
     const values = formContext.watch('menuItems')
     const top = formContext.watch('top')
     return (

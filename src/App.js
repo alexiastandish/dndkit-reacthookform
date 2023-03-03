@@ -36,16 +36,19 @@ function App() {
                         <input type="submit" />
                     </form>
                     <Box sx={{ typography: 'body1' }}>
-                        Is dirty: {JSON.stringify(methods.formState.isDirty)}
-                        <button
-                            onClick={() =>
-                                methods.reset({ ...constants.defaultValues })
-                            }
-                            type="button"
-                        >
-                            discard changes
-                        </button>
+                        Is dirty:{' '}
+                        <strong>
+                            {JSON.stringify(methods.formState.isDirty)}
+                        </strong>
                     </Box>
+                    <button
+                        onClick={() =>
+                            methods.reset({ ...constants.defaultValues })
+                        }
+                        type="button"
+                    >
+                        discard changes
+                    </button>
                 </div>
 
                 <Preview />

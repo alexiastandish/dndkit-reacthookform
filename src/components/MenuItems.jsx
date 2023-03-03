@@ -40,7 +40,6 @@ export default function MenuItems({ control, register, setValue, watch }) {
         }
     }
 
-    //    context of the global component where all the drag and drop will happen
     //    sensors: what kind of sensors do you want to use (pointer? keyboard?); how you can control dragging and dropping
     //    collectionDetention: know how dnd will determine if you are over something or not
 
