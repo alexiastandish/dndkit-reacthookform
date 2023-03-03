@@ -14,12 +14,13 @@ function App() {
             users: [
                 {
                     name: 'alexia',
+                    url: 'www.alexia.com',
                 },
-                { name: 'chai' },
-                { name: 'mia' },
-                { name: 'justin' },
-                { name: 'sean' },
-                { name: 'fernando' },
+                { name: 'chai', url: 'www.chai.com' },
+                { name: 'mia', url: 'www.mia.com' },
+                { name: 'justin', url: 'www.justin.com' },
+                { name: 'sean', url: 'www.sean.com' },
+                { name: 'fernando', url: 'www.fernando.com' },
             ],
         },
     })

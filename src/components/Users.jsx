@@ -6,23 +6,29 @@ import {
     DndContext,
     PointerSensor,
     useSensor,
+    useSensors,
+    KeyboardSensor,
 } from '@dnd-kit/core'
 import {
-    arrayMove,
     SortableContext,
+    sortableKeyboardCoordinates,
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { useFieldArray } from 'react-hook-form'
-import CustomPointerSensor from './CustomPointerSensor'
 
 export default function Users({ control, register, setValue }) {
     // TODO
-    const { fields, move, replace } = useFieldArray({
+    const { fields, move } = useFieldArray({
         control,
         name: 'users',
     })
 
-    const sensors = [useSensor(CustomPointerSensor)]
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    )
 
     const handleDragEnd = (event) => {
         const { active, over } = event
