@@ -25,12 +25,11 @@ export default function MenuItemComponent({
     const style = { transition, transform: CSS.Transform.toString(transform) }
 
     const icon = watch(`menuItems.${index}.icon`)
-    console.log('icon', icon)
 
     return (
         <div ref={setNodeRef} className={styles.user} style={style}>
-            <button {...listeners} {...attributes}>
-                drag handle
+            <button {...listeners} {...attributes} type="button">
+                <i className="fa-solid fa-ellipsis-vertical"></i>
             </button>
             <EditContainer
                 closeOnClick={close}

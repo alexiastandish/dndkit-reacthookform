@@ -1,4 +1,31 @@
 {
+    "defaultValues": {
+        "top": true,
+        "menuItems": [
+            {
+                "title": "home",
+                "url": "www.home.com",
+                "icon": "fa-home"
+            },
+            { "title": "account", "url": "www.account.com", "icon": "fa-user" },
+            {
+                "title": "collections",
+                "url": "www.collections.com",
+                "icon": "fa-shirt"
+            },
+            {
+                "title": "wishlist",
+                "url": "www.wishlist.com",
+                "icon": "fa-heart"
+            },
+            {
+                "title": "cart",
+                "url": "www.cart.com",
+                "icon": "fa-cart-shopping"
+            },
+            { "title": "about", "url": "www.about.com", "icon": "fa-store" }
+        ]
+    },
     "icons": [
         "fa-home",
         "fa-file",
