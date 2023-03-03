@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
-import Users from './components/Users'
+import MenuItems from './components/MenuItems'
 import { useForm } from 'react-hook-form'
 import NavType from './components/NavType'
 import styles from './styles.module.scss'
@@ -11,16 +11,29 @@ function App() {
         mode: 'onSubmit',
         defaultValues: {
             top: true,
-            users: [
+            menuItems: [
                 {
-                    name: 'alexia',
-                    url: 'www.alexia.com',
+                    title: 'home',
+                    url: 'www.home.com',
+                    icon: 'fa-home',
                 },
-                { name: 'chai', url: 'www.chai.com' },
-                { name: 'mia', url: 'www.mia.com' },
-                { name: 'justin', url: 'www.justin.com' },
-                { name: 'sean', url: 'www.sean.com' },
-                { name: 'fernando', url: 'www.fernando.com' },
+                { title: 'account', url: 'www.account.com', icon: 'fa-user' },
+                {
+                    title: 'collections',
+                    url: 'www.collections.com',
+                    icon: 'fa-shirt',
+                },
+                {
+                    title: 'wishlist',
+                    url: 'www.wishlist.com',
+                    icon: 'fa-heart',
+                },
+                {
+                    title: 'cart',
+                    url: 'www.cart.com',
+                    icon: 'fa-cart-shopping',
+                },
+                { title: 'about', url: 'www.about.com', icon: 'fa-store' },
             ],
         },
     })
@@ -28,8 +41,6 @@ function App() {
     const onSubmit = (data) => {
         console.log('data', data)
     }
-    const dirty = methods.formState
-    console.log('dirty', dirty)
 
     return (
         <div className={styles.container}>
@@ -38,9 +49,10 @@ function App() {
                     control={methods.control}
                     setValue={methods.setValue}
                 />
-                <Users
+                <MenuItems
                     control={methods.control}
                     register={methods.register}
+                    watch={methods.watch}
                     setValue={methods.setValue}
                 />
                 <input type="submit" />

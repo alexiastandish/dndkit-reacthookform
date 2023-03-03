@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import UserComponent from './UserComponent'
+import MenuItemComponent from './MenuItemComponent'
 import styles from '../styles.module.scss'
 import {
     closestCenter,
@@ -16,11 +16,10 @@ import {
 } from '@dnd-kit/sortable'
 import { useFieldArray } from 'react-hook-form'
 
-export default function Users({ control, register, setValue }) {
-    // TODO
+export default function MenuItems({ control, register, setValue, watch }) {
     const { fields, move } = useFieldArray({
         control,
-        name: 'users',
+        name: 'menuItems',
     })
 
     const sensors = useSensors(
@@ -40,7 +39,6 @@ export default function Users({ control, register, setValue }) {
             move(oldIndex, newIndex)
         }
     }
-    console.log('fields', fields)
 
     //    context of the global component where all the drag and drop will happen
     //    sensors: what kind of sensors do you want to use (pointer? keyboard?); how you can control dragging and dropping
@@ -61,7 +59,8 @@ export default function Users({ control, register, setValue }) {
             >
                 {fields.map((item, index) => {
                     return (
-                        <UserComponent
+                        <MenuItemComponent
+                            watch={watch}
                             {...item}
                             index={index}
                             key={item.id}
